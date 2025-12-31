@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://YOUR-RENDER-APP.onrender.com"; // update with your actual Render URL
+const BACKEND_URL = "https://picture-generating-ai.onrender.com"; // update with your actual Render URL
 
 async function generateImage(prompt) {
   const res = await fetch(`${BACKEND_URL}/generate`, {
