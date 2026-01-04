@@ -1,11 +1,18 @@
-const BACKEND_URL = "https://picture-generating-ai.onrender.com"; // update with your actual Render URL
+const BACKEND_URL = "https://picture-generating-ai.onrender.com";
 
 async function generateImage(prompt) {
-  const res = await fetch(`${BACKEND_URL}`, {
+  if (!prompt) throw new Error("Prompt required");
+
+  const res = await fetch(`${BACKEND_URL}/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt })
   });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || "Request failed");
+  }
 
   const { image } = await res.json();
   return image;
@@ -19,11 +26,23 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   loader.style.display = "block";
   imageEl.style.display = "none";
 
-  const base64 = await generateImage(prompt);
+  try {
+    if (!prompt) {
+      alert("Please enter a prompt");
+      loader.style.display = "none";
+      return;
+    }
 
-  loader.style.display = "none";
-  if (base64) {
-    imageEl.src = `data:image/png;base64,${base64}`;
-    imageEl.style.display = "block";
+    const base64 = await generateImage(prompt);
+    loader.style.display = "none";
+
+    if (base64) {
+      imageEl.src = `data:image/png;base64,${base64}`;
+      imageEl.style.display = "block";
+    }
+  } catch (err) {
+    loader.style.display = "none";
+    console.error(err);
+    alert("Error: " + (err.message || err));
   }
 });

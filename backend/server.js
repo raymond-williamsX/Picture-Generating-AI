@@ -19,6 +19,11 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Prompt required" });
     }
 
+    if (!process.env.HF_API_KEY) {
+      console.error('HF_API_KEY not set in environment');
+      return res.status(500).json({ error: 'Server misconfiguration: HF_API_KEY not set' });
+    }
+
     const response = await fetch(HF_URL, {
       method: "POST",
       headers: {
