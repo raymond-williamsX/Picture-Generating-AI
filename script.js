@@ -1,7 +1,7 @@
 const BACKEND_URL = "https://picture-generating-ai.onrender.com"; // update with your actual Render URL
 
 async function generateImage(prompt) {
-  const res = await fetch(`${BACKEND_URL}/generate`, {
+  const res = await fetch(`${BACKEND_URL}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ prompt })
