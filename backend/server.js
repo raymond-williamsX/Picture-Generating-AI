@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const HF_URL =
-  "https://router.huggingface.co/models/runwayml/stable-diffusion-v1-5";
+  "https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5";
 
 app.post("/generate", async (req, res) => {
   try {
