@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://picture-generating-ai.onrender.com";
+const BACKEND_URL = "https://picture-generating-ai-9dhk.onrender.com";
 
 async function generateImage(prompt) {
   if (!prompt) throw new Error("Prompt required");
