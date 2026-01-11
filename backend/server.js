@@ -15,27 +15,46 @@ const HF_URL =
 app.post("/generate", async (req, res) => {
   try {
     const { prompt } = req.body;
+
     if (!prompt) {
       return res.status(400).json({ error: "Prompt required" });
     }
 
     if (!process.env.HF_API_KEY) {
-      console.error('HF_API_KEY not set in environment');
-      return res.status(500).json({ error: 'Server misconfiguration: HF_API_KEY not set' });
+      console.error("HF_API_KEY not set in environment");
+      return res.status(500).json({
+        error: "Server misconfiguration: HF_API_KEY not set",
+      });
     }
 
     const response = await fetch(HF_URL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.HF_API_KEY}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "image/png"
       },
-      body: JSON.stringify({ inputs: prompt })
+      body: JSON.stringify({
+        inputs: prompt,
+        options: { wait_for_model: true }
+      }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
+      console.error("HuggingFace Error:", errorText);
       return res.status(500).json({ error: errorText });
+    }
+
+    const contentType = response.headers.get("content-type");
+
+    if (!contentType || !contentType.startsWith("image")) {
+      const errorText = await response.text();
+      console.error("Non-image response from HuggingFace:", errorText);
+      return res.status(500).json({
+        error: "Hugging Face did not return an image",
+        details: errorText,
+      });
     }
 
     const arrayBuffer = await response.arrayBuffer();
@@ -43,7 +62,7 @@ app.post("/generate", async (req, res) => {
 
     res.json({ image: base64Image });
   } catch (err) {
-    console.error("Error:", err);
+    console.error("Server Error:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
