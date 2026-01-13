@@ -69,3 +69,13 @@ Add a license (e.g., MIT) if you plan to publish or share the project.
 ---
 
 If you'd like, I can commit this change, open a PR, or add a short example of `server.js` request/response handling. Which would you prefer next?
+
+## Contact
+If you'd like to contact me to collab on projects, message me through:
+
+-WEBSITE: https://raymond-studio.netlify.app
+
+-WHATSAPP: wa.me/+2347041142662
+
+X (Twitter): x.com/Raymond_Xr
+
