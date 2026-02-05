@@ -6,7 +6,8 @@ async function generateImage(prompt) {
   const res = await fetch(`${BACKEND_URL}/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt })
+    body: JSON.stringify({ prompt }),
+    timeout: 130000, // 2+ minutes to match server timeout
   });
 
   if (!res.ok) {

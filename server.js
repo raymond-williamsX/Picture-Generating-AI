@@ -34,7 +34,9 @@ app.post("/generate", async (req, res) => {
       },
       body: JSON.stringify({
         inputs: prompt,
+        options: { wait_for_model: true },
       }),
+      timeout: 120000, // 2 minute timeout for model to load
     });
 
     if (!response.ok) {
