@@ -9,8 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const HF_URL =
-  "https://router.huggingface.co/models/runwayml/stable-diffusion-v1-5";
+const HF_API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
 
 app.post("/generate", async (req, res) => {
   try {
@@ -27,16 +26,14 @@ app.post("/generate", async (req, res) => {
       });
     }
 
-    const response = await fetch(HF_URL, {
+    const response = await fetch(HF_API_URL, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.HF_API_KEY}`,
         "Content-Type": "application/json",
-        "Accept": "image/png"
       },
       body: JSON.stringify({
         inputs: prompt,
-        options: { wait_for_model: true }
       }),
     });
 
