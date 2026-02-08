@@ -75,7 +75,8 @@ If you'd like to contact me to collab on projects, message me through:
 
 -WEBSITE: https://raymond-studio.netlify.app
 
--WHATSAPP: wa.me/+2347041142662
+-WHATSAPP: https://wa.me/+2347041142662
 
-X (Twitter): x.com/Raymond_Xr
+-X (Twitter): x.com/Raymond_Xr
 
+-INSTAGRAM: https://instagram.com/iorliam_raymond
