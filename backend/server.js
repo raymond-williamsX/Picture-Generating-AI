@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const HF_API_URL = "https://api-inference.huggingface.co/models/Lykon/DreamShaper";
+const HF_API_URL = "https://router.huggingface.co/models/Lykon/DreamShaper";
 
 app.post("/generate", async (req, res) => {
   try {
