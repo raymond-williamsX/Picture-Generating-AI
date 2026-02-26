@@ -9,7 +9,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const HF_API_URL = "https://router.huggingface.co/models/Lykon/DreamShaper";
+const HF_MODEL = process.env.HF_MODEL || "black-forest-labs/FLUX.1-schnell";
+const HF_API_URL = `https://router.huggingface.co/hf-inference/models/${HF_MODEL}`;
 
 app.post("/generate", async (req, res) => {
   try {
@@ -42,7 +43,10 @@ app.post("/generate", async (req, res) => {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("HuggingFace Error:", errorText);
-      return res.status(500).json({ error: errorText });
+      return res.status(response.status).json({
+        error: errorText,
+        model: HF_MODEL,
+      });
     }
 
     const contentType = response.headers.get("content-type");
