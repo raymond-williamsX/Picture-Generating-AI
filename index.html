@@ -4,23 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Image Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>AI Image Generator</h1>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
 
-        <div class="input-section">
-            <input type="text" id="promptInput" placeholder="Describe your image..." />
-            <button id="generateBtn">Generate</button>
-        </div>
+    <main class="container">
+        <h1>Picture Generating AI</h1>
+        <p class="subtitle">Type a prompt, press Enter, and create an image in seconds.</p>
 
-        <div class="loader" id="loader">Generating...</div>
+        <form class="input-section" id="promptForm">
+            <input type="text" id="promptInput" placeholder="Describe your image..." autocomplete="off" />
+            <button id="generateBtn" type="submit">Generate</button>
+        </form>
 
         <div class="image-container">
+            <div class="loader" id="loader">Generating image...</div>
             <img id="resultImage" src="" alt="">
+            <button id="downloadBtn" type="button" disabled>Download Image</button>
         </div>
-    </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Picture Generating AI. Built by Raymond Iorliam.</p>
+        <p>
+            Contact:
+            <a href="https://raymond-studio.netlify.app" target="_blank" rel="noopener noreferrer">Website</a>
+            <span>|</span>
+            <a href="https://x.com/Raymond_Xr" target="_blank" rel="noopener noreferrer">X</a>
+            <span>|</span>
+            <a href="https://instagram.com/iorliam_raymond" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <span>|</span>
+            <a href="https://wa.me/+2347041142662" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
